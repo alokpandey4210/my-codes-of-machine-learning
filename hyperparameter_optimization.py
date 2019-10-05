@@ -7,6 +7,10 @@ from sklearn.model_selection import train_test_split
 from sklearn.model_selection import GridSearchCV
 from sklearn.metrics import classification_report
 from sklearn.svm import SVC
+from sklearn.naive_bayes import GaussianNB
+f=GaussianNB()
+f.fit(X_train,y_train)
+f.score(X_test,y_test)
 
 dat = datasets.load_breast_cancer()
 print("Examples = ",dat.data.shape ," Labels = ", dat.target.shape)
@@ -34,8 +38,18 @@ print("Best: %f using %s" % (clf_rds.best_score_,
                              clf_rds.best_params_))
 rds_predictions = clf_rds.predict(X_test)  
 print(classification_report(Y_test, rds_predictions))
-
-
+from sklearn.metrics import Confusion_matrix
+y_predict=model.predict(X_test)
+Print('confusion_mateics)
+results=confusion_matrix(y_test,y_predict)
+print(results)
+for i in range(5):
+Print(y_predict[i],y_test.iloc[i])
+#save the model
+Import pickle
+file_name='cancer.sav'
+tuples=(model,X)
+pickle.dump(tuples,open(file_name,'wb'))
 
 
 
